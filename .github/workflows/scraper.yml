@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: scraper
-  cancel-in-progress: true  # Cancela la ejecución anterior si una nueva empieza
+  cancel-in-progress: true  # Cancela ejecución anterior si una nueva empieza
 
 jobs:
   run-scraper:
@@ -26,7 +26,8 @@ jobs:
           pip install selenium webdriver-manager
 
       - name: Ejecutar script con límite de tiempo
-        run: timeout 180s python scraper.py  # 3 minutos de ejecución máxima
+        # Aumenta el timeout si crees que tu scraping necesita más de 3 min (ej: 300s = 5 min)
+        run: timeout 180s python scraper.py
 
       - name: Verificar si la base de datos existe
         run: ls -l subastas.db || echo "⚠️ Archivo subastas.db no encontrado"
