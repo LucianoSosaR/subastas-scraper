@@ -1,0 +1,31 @@
+name: Ejecutar scraper
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # Ejecuta cada 10 minutos
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependencias
+        run: |
+          pip install selenium webdriver-manager
+
+      - name: Ejecutar script
+        run: python scraper.py
+
+      - name: Subir base de datos actualizada
+        uses: actions/upload-artifact@v3
+        with:
+          name: subastas-database
+          path: subastas.db
