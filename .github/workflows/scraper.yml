@@ -29,7 +29,7 @@ jobs:
 
       - name: Subir base de datos actualizada
         if: success()  # Asegura que el paso anterior no falló
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Cambiamos a la versión v4
         with:
           name: subastas-database
           path: subastas.db
