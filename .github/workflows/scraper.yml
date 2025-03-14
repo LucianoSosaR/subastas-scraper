@@ -2,7 +2,7 @@ name: Ejecutar scraper
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Ejecuta cada 10 minutos
+    - cron: '*/5 * * * *'  # Ejecuta cada 10 minutos
   workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
 
 jobs:
